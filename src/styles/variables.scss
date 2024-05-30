@@ -1,6 +1,16 @@
 /** 全局SCSS变量 */
 :root {
   --menu-background: #252534;
+  // 颜色
+  --sk-color-primary: #2080f0;
+  --sk-color-success: #18a058;
+  --sk-color-warning: #fcb040;
+  --sk-color-error: #d03050;
+
+  // button
+  --sk-btn-color: #fff;
+  --sk-btn-bg: #fff;
+  --sk-btn-border-color: #fff;
 }
 
 /** 暗黑主题 */

@@ -1,0 +1,20 @@
+.picker-presets {
+  position: relative;
+
+  .preset-item {
+    position: relative;
+  }
+}
+
+.preset-item {
+  .preset-label {
+    position: relative;
+  }
+
+  .preset-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 0;
+  }
+}

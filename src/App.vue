@@ -5,19 +5,10 @@ import AnnotationBar from "@/components/AnnotationBar/index.vue";
 </script>
 
 <template>
-  <div class="pdf-container">
-    pdf
+  <div class="app-container">
     <ToolBar />
     <NavBar />
     <AnnotationBar />
+    <PageNumber />
   </div>
 </template>
-
-<style lang="scss" scoped>
-.pdf-container {
-  width: 100%;
-  height: 100%;
-  background-color: #d42121;
-  overflow: auto;
-}
-</style>

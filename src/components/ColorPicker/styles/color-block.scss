@@ -1,0 +1,41 @@
+.color-block {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: inset 0 0 1px 0 rgba($color: #000, $alpha: 25%);
+
+  &-inner {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(0 0 0 / 6%);
+    border-radius: inherit;
+  }
+
+  &::after {
+    position: absolute;
+    inset-inline-start: 21.5%;
+    top: 50%;
+    box-sizing: border-box;
+    display: table;
+    width: calc(18px / 13 * 5);
+    height: calc(18px / 13 * 8);
+    content: "";
+    border: 2px solid #fff;
+    border-inline-start: 0;
+    border-top: 0;
+    opacity: 0;
+    transition:
+      all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6),
+      opacity 0.1s;
+    transform: rotate(45deg) scale(0) translate(-50%, -50%);
+  }
+
+  &.color-checked::after {
+    border-color: #fff;
+    opacity: 1;
+    transition: transform 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+    transform: rotate(45deg) scale(1) translate(-50%, -50%);
+  }
+}

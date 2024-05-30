@@ -1,0 +1,15 @@
+.picker-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  &-left,
+  &-right {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin-top: 0.5rem;
+    border-radius: 0.475rem;
+  }
+}

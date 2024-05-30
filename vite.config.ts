@@ -3,6 +3,14 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 import { UserConfig, ConfigEnv, loadEnv, defineConfig } from "vite";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 import { viteCommonjs } from "@originjs/vite-plugin-commonjs";
+
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
+import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
+import Icons from "unplugin-icons/vite";
+import IconsResolver from "unplugin-icons/resolver";
+
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import { resolve } from "path";
 import {
   name,
@@ -43,6 +51,14 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         },
       },
     },
+    server: {
+      // 允许IP访问
+      host: "0.0.0.0",
+      // 应用端口 (默认:3000)
+      port: Number(env.VITE_APP_PORT),
+      // 运行是否自动打开浏览器
+      open: true,
+    },
     plugins: [
       nodePolyfills(),
       vue(),
@@ -50,10 +66,62 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       viteCommonjs(),
       // jsx、tsx语法支持
       vueJsx(),
+      AutoImport({
+        // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
+        imports: ["vue", "@vueuse/core", "pinia"],
+        resolvers: [
+          // 自动导入Naive UI组件
+          NaiveUiResolver(),
+          // 自动导入图标组件
+          IconsResolver({}),
+        ],
+        eslintrc: {
+          // 是否自动生成 eslint 规则，建议生成之后设置 false
+          enabled: false,
+          // 指定自动导入函数 eslint 规则的文件
+          filepath: "./.eslintrc-auto-import.json",
+          globalsPropValue: true,
+        },
+        // 是否在 vue 模板中自动导入
+        vueTemplate: true,
+        // 指定自动导入函数TS类型声明文件路径 (false:关闭自动生成)
+        // dts: false,
+        dts: "src/typings/auto-imports.d.ts",
+      }),
+      Components({
+        resolvers: [
+          // 自动注册Naive UI组件
+          NaiveUiResolver(),
+          // 自动注册图标组件
+          IconsResolver({
+            // 其他图标库 https://icon-sets.iconify.design/
+            // enabledCollections: ["mdi", "ri", "fa-solid", "fa-regular", "linecons-pro],
+          }),
+        ],
+        // 指定自定义组件位置(默认:src/components)
+        dirs: ["src/components", "src/**/components"],
+        // 指定自动导入组件TS类型声明文件路径 (false:关闭自动生成)
+        // dts: false,
+        dts: "src/typings/components.d.ts",
+      }),
+      Icons({
+        // 自动安装图标库
+        autoInstall: true,
+      }),
+      createSvgIconsPlugin({
+        // 指定需要缓存的图标文件夹
+        iconDirs: [resolve(pathSrc, "assets/icons")],
+        // 指定symbolId格式
+        symbolId: "icon-[dir]-[name]",
+      }),
       VueDevTools({
         openInEditorHost: `http://localhost:${env.VITE_APP_PORT}`,
       }),
     ],
+    // 预加载项目必需的组件
+    optimizeDeps: {
+      include: ["vue", "pinia", "@vueuse/core", "path-browserify"],
+    },
     // 构建配置
     build: {
       chunkSizeWarningLimit: 2000, // 消除打包大小超过500kb警告

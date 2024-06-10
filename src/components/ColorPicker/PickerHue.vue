@@ -42,5 +42,5 @@ function handleChange(payload: Event) {
 <script setup lang="ts"></script>
 
 <style lang="scss" scoped>
-@import "./styles/picker-hue.scss";
+@import "./styles/picker-hue";
 </style>

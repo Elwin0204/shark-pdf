@@ -4,9 +4,11 @@
       <div class="preset-label">{{ item.label }}</div>
       <div class="preset-content">
         <ColorBlock
-          v-for="(color, index2) in item.colors"
+          v-for="(preset, index2) in item.colors"
           :key="index2"
-          :value="color.hex"
+          :value="preset.hex"
+          :checkedValue="checkedValue"
+          @on-change="handleChange"
         />
       </div>
     </div>
@@ -19,10 +21,17 @@ defineOptions({
   inheritAttrs: false,
 });
 import usePresets from "./hooks/usePresets";
+import { PickerPresetsEmitter } from "./interface/types";
 
+const emit = defineEmits<PickerPresetsEmitter>();
 const { presets } = usePresets();
-console.log("presets", presets);
+const checkedValue = ref("");
+
+function handleChange(value: string) {
+  checkedValue.value = value;
+  emit("onChange", value);
+}
 </script>
 <style lang="scss" scoped>
-@import "./styles/picker-presets.scss";
+@import "./styles/picker-presets";
 </style>

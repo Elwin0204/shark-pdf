@@ -52,7 +52,7 @@ export default function useColorDrag(props: useColorDragProps) {
     const offsetY =
       Math.max(0, Math.min(pageY - rectY, height)) - centerOffsetY;
 
-    const calcOffset = {
+    const offset = {
       x: offsetX,
       y: direction === "x" ? offsetValue.y : offsetY,
     };
@@ -64,8 +64,8 @@ export default function useColorDrag(props: useColorDragProps) {
       return false;
     }
 
-    setOffsetValue(calcOffset);
-    onDragChange?.(calcOffset);
+    setOffsetValue(offset);
+    onDragChange?.(offset);
   };
 
   const onDragMove: EventHandler = (e) => {
@@ -113,11 +113,11 @@ export default function useColorDrag(props: useColorDragProps) {
   });
 
   watch(
-    [() => color],
+    () => color.value,
     () => {
       if (dragRef.flag === false) {
         nextTick(() => {
-          const offset = calcOffset(containerRef, targetRef, color);
+          const offset = calcOffset(containerRef, targetRef, color.value);
           if (offset) {
             setOffsetValue(offset);
           }

@@ -7,7 +7,7 @@ import { OpacityBarEmitter } from "./interface/types";
 
 defineProps({
   modelValue: {
-    tpye: Number,
+    type: Number,
     default: 0,
   },
   opacityBg: {

@@ -1,4 +1,5 @@
 import { ColorModeEnum } from "@/enums/ColorModeEnum";
+import { PresetsEnum } from "@/enums/PresetsEnum";
 
 // Picker types
 export interface PickerEmitter {
@@ -35,7 +36,7 @@ export interface useColorDragProps {
   offset?: TransformOffset;
   containerRef: Ref<HTMLDivElement>;
   targetRef: Ref<HTMLDivElement>;
-  color: Color;
+  color: Ref<Color>;
   direction?: "x" | "y";
   onDragChange?: (offset: TransformOffset) => void;
   onDragChangeComplete?: () => void;
@@ -56,6 +57,36 @@ export interface InputHexEmitter {
 // PickerMenu types
 export interface PickerMenuEmitter {
   (e: "update:colorMode", value: ColorModeEnum): void;
+}
+
+// Presets
+export interface PresetsConfig {
+  [k: string]: PresetsConfig;
+}
+
+export interface PresetItemColor {
+  hex: string;
+  checked?: boolean;
+}
+
+export interface PresetsData {
+  label: string;
+  colors: Array<PresetItemColor>;
+}
+
+export interface PresetsItem {
+  k: PresetsEnum;
+  v: PresetsData;
+}
+
+// ColorBlock types
+export interface ColorBlockEmitter {
+  (e: "onChange", value: string): void;
+}
+
+// PickerPresets types
+export interface PickerPresetsEmitter {
+  (e: "onChange", value: string): void;
 }
 
 export type ColorType = "HEX8" | "HEX" | "RGB" | "RGBA";

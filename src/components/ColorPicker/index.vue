@@ -5,7 +5,7 @@ defineOptions({
 });
 import { ColorModeEnum } from "@/enums/ColorModeEnum";
 import { Color, RGB } from "./interface/types";
-import { rgbToHue, hslToRgb } from "./utils/converter";
+import { rgbToHue, hslToRgb, hexToRgb } from "./utils/converter";
 import { cloneDeep } from "./utils/util";
 
 const props = defineProps({
@@ -76,6 +76,24 @@ function handlePickerHueInput(val: number) {
   }
 }
 
+function handlePickerPresetsChange(val: string) {
+  for (let i = 0; i < colorList.value.length; i++) {
+    if (colorList.value[i].select) {
+      const rgb = hexToRgb(val);
+      if (rgb) {
+        const { r, g, b } = rgb;
+        colorList.value[i].r = r;
+        colorList.value[i].g = g;
+        colorList.value[i].b = b;
+        colorList.value[i].hue = rgbToHue(rgb.r, rgb.g, rgb.b);
+        hue.value = colorList.value[i].hue;
+        colorList.value = cloneDeep(colorList.value);
+      }
+      return;
+    }
+  }
+}
+
 function updateColorMode(val: ColorModeEnum) {
   colorMode.value = val;
 }
@@ -138,7 +156,7 @@ onMounted(() => {
       ref="colorPickerRef"
     >
       <div class="pannel-left">
-        <PickerPresets />
+        <PickerPresets @on-change="handlePickerPresetsChange" />
         <MyFavorite ref="myFavoriteRef" />
       </div>
       <div class="color-picker-divider"></div>

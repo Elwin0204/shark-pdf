@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import ToolBar from "@/components/ToolBar/index.vue";
-import NavBar from "@/components/NavBar/index.vue";
-import AnnotationBar from "@/components/AnnotationBar/index.vue";
+// 123
 </script>
 
 <template>
@@ -10,5 +8,6 @@ import AnnotationBar from "@/components/AnnotationBar/index.vue";
     <NavBar />
     <AnnotationBar />
     <PageNumber />
+    <PdfRenderer />
   </div>
 </template>

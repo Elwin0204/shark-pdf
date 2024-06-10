@@ -1,21 +1,5 @@
+import { PresetsItem, PresetsConfig, PresetsData } from "../interface/types";
 import { PresetsEnum } from "@/enums/PresetsEnum";
-interface PresetsConfig {
-  [k: string]: PresetsConfig;
-}
-
-interface Color {
-  hex: string;
-}
-
-interface PresetsData {
-  label: string;
-  colors: Array<Color>;
-}
-
-interface PresetsItem {
-  k: PresetsEnum;
-  v: PresetsData;
-}
 
 const presetsList: PresetsItem[] = [
   {

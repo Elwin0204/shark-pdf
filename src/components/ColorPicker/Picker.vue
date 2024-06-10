@@ -55,7 +55,7 @@ const renderCanvas = (rgb: number[]) => {
 const { offsetValue, onDragStart } = useColorDrag({
   containerRef: pickerRef,
   targetRef: transformRef,
-  color: props.color,
+  color: toRefs(props).color,
   disabledDrag: props.disabled,
   onDragChange: (offsetValue) => {
     const sl = calcSL({

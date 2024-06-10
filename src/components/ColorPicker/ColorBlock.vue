@@ -1,5 +1,8 @@
 <template>
-  <div :class="{ 'color-block': true, 'color-checked': checked }">
+  <div
+    :class="{ 'color-block': true, 'color-checked': value === checkedValue }"
+    @click="handleColorBlockClick(value)"
+  >
     <div class="color-block-inner" :style="{ background: value }"></div>
   </div>
 </template>
@@ -9,18 +12,22 @@ defineOptions({
   name: "ColorBlock",
   inheritAttrs: false,
 });
-
+import { ColorBlockEmitter } from "./interface/types";
 const props = defineProps({
-  checked: {
-    type: Boolean,
-    default: false,
+  checkedValue: {
+    type: String,
+    default: "",
   },
   value: {
     type: String,
     default: "",
   },
 });
+const emit = defineEmits<ColorBlockEmitter>();
+function handleColorBlockClick(value: string) {
+  emit("onChange", value);
+}
 </script>
 <style lang="scss" scoped>
-@import "./styles/color-block.scss";
+@import "./styles/color-block";
 </style>

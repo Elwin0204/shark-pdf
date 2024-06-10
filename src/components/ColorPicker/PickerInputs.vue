@@ -211,5 +211,5 @@ watch(
   </div>
 </template>
 <style lang="scss" scoped>
-@import "./styles/picker-inputs.scss";
+@import "./styles/picker-inputs";
 </style>

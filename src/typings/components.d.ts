@@ -26,6 +26,7 @@ declare module 'vue' {
     NModal: typeof import('naive-ui')['NModal']
     OpacityBar: typeof import('./../components/ColorPicker/OpacityBar.vue')['default']
     PageNumber: typeof import('./../components/PageNumber/index.vue')['default']
+    PdfRenderer: typeof import('./../components/PdfRenderer/index.vue')['default']
     Picker: typeof import('./../components/ColorPicker/Picker.vue')['default']
     PickerBlock: typeof import('./../components/ColorPicker/PickerBlock.vue')['default']
     PickerHue: typeof import('./../components/ColorPicker/PickerHue.vue')['default']

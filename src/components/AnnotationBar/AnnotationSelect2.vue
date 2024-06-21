@@ -66,6 +66,7 @@ function toggleAnnotationSelect() {
   display: flex;
   flex-direction: column;
   padding: 12px 4px;
+  background-color: #fff;
   border-top-left-radius: 36px;
   border-bottom-left-radius: 36px;
   box-shadow:

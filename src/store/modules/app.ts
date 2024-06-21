@@ -21,6 +21,8 @@ export const useAppStore = defineStore("app", () => {
   const annotationType = ref<string>(AnnotationEnum.INK);
   const annotationOptionType = ref<string>(AnnotationOptionEnum.INK_1);
   const navMode = useStorage("navMode", NavEnum.BOOKMARK);
+  const currentPage = ref(1);
+  const pdfPages = ref(0);
   const thumbnailList = ref<Array<ThumbnailItem>>([
     {
       page: 1,
@@ -160,11 +162,13 @@ export const useAppStore = defineStore("app", () => {
     annotationOptionType.value = val;
   }
 
-  /**
-   * 切换语言
-   *
-   * @param val
-   */
+  function setCurrentPage(val: number) {
+    currentPage.value = val;
+  }
+
+  function setPdfPages(val: number) {
+    pdfPages.value = val;
+  }
   function changeLanguage(val: string) {
     language.value = val;
   }
@@ -180,6 +184,8 @@ export const useAppStore = defineStore("app", () => {
     navMode,
     annotationType,
     annotationOptionType,
+    currentPage,
+    pdfPages,
     thumbnailList,
     bookmarkList,
     annotationList,
@@ -192,6 +198,8 @@ export const useAppStore = defineStore("app", () => {
     switchAnnotationOptionType,
     toggleAnnotationSelectVisible,
     toggleAnnotationSelectVisible2,
+    setCurrentPage,
+    setPdfPages,
   };
 });
 

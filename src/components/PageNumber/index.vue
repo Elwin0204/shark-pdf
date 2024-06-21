@@ -3,14 +3,18 @@ defineOptions({
   name: "PageNumber",
   inheritAttrs: false,
 });
+import { useAppStore } from "@/store";
+const appStore = useAppStore();
+const pdfPages = computed(() => appStore.pdfPages);
+const currentPage = computed(() => appStore.currentPage);
 </script>
 
 <template>
   <div class="page-number">
     <div class="page-number__content">
-      <span>1</span>
+      <span>{{ currentPage }}</span>
       <i class="page-number-separator"></i>
-      <span>100</span>
+      <span>{{ pdfPages }}</span>
     </div>
   </div>
 </template>

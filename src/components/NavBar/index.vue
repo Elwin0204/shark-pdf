@@ -86,9 +86,11 @@ function toggleNavMode(val: string) {
   height: 100vh;
   transition: transform 0.3s ease;
   transform: translateY(-50%);
+  z-index: 100;
 
   .nav-container {
     display: flex;
+    background-color: #fff;
     height: calc(100% - 100px);
     overflow: hidden;
     border-top-right-radius: 6px;

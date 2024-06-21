@@ -33,12 +33,14 @@ const mode = computed(() => appStore.mode);
   right: 0;
   display: inline-flex;
   transform: translateY(-50%);
+  z-index: 100;
 
   .annotation-container {
     position: relative;
     display: flex;
     align-items: center;
-    border-radius: 4px;
+    border-top-left-radius: 36px;
+    border-bottom-left-radius: 36px;
   }
 }
 

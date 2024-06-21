@@ -109,6 +109,7 @@ function toggleNavbarVisible() {
   left: 50%;
   display: inline-flex;
   transform: translateX(-50%);
+  z-index: 100;
 
   .tool-container {
     display: flex;

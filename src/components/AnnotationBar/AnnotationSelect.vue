@@ -93,6 +93,7 @@ function switchAnnotationType(val: string) {
   display: flex;
   flex-direction: column;
   padding: 15px 30px;
+  background-color: #fff;
   margin-right: 12px;
   border-radius: 16px;
   box-shadow:
